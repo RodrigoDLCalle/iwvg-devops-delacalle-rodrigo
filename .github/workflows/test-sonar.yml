@@ -1,27 +1,37 @@
-name: DevOps
+name: SonarCloud
 on:
   push:
-    branches: ['develop', 'release-*']
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
 jobs:
-  devops:
-    name: Test - Unit & Integration & SonarCloud Scan & Slack WebHook
-    runs-on: ubuntu-latest # macos-latest macos-11 windows-2019 ubuntu-20.04
+  build:
+    name: Build and analyze
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with: {fetch-depth: 0}
-      - uses: actions/setup-java@v1
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
         with:
           java-version: 17
-      - name: Unit & Integration Tests
-        run: mvn -B verify # -B: --batch-mode
-      - name: Sonar
-        if: success() # always() failure() success()
-        run: >
-          mvn -B verify -DskipTests sonar:sonar
-          -Dsonar.projectKey=RodrigoDLCalle_iwvg-devops-delacalle-rodrigo
-          -Dsonar.organization=rodrigodlcalle
-          -Dsonar.host.url=https://sonarcloud.io
-          -Dsonar.login=$SONAR_TOKEN
+          distribution: 'zulu' # Alternative distribution options are available.
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build and analyze
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=RodrigoDLCalle_iwvg-devops-delacalle-rodrigo
