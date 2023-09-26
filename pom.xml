@@ -14,7 +14,7 @@
 
     <artifactId>iwvg-devops-delacalle-rodrigo</artifactId>
     <groupId>es.upm.miw</groupId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>${project.groupId}.${project.artifactId}</name>
@@ -41,10 +41,12 @@
         <!-- Maven. integration test -->
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.1.2</maven-failsafe-plugin.version>
-                <!-- coverage report -->
+        <!-- coverage report -->
         <jacoco.version>0.8.10</jacoco.version>
         <!-- OpenAPI -->
         <springdoc-openapi-starter-webflux-ui.version>2.1.0</springdoc-openapi-starter-webflux-ui.version>
+        <sonar.organization>rodrigodlcalle</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencies>
@@ -62,7 +64,7 @@
             <artifactId>reactor-test</artifactId>
         </dependency>
         <!-- OpenAPI http://localhost:8080/swagger-ui.html -->
-		<!-- OpenAPI http://localhost:8080/v3/api-docs -->
+        <!-- OpenAPI http://localhost:8080/v3/api-docs -->
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webflux-ui</artifactId>
