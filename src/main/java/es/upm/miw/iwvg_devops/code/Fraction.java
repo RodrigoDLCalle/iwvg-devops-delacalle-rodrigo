@@ -57,11 +57,52 @@ public class Fraction {
         return (double) numerator / denominator;
     }
 
+    public boolean isProper() {
+        return Math.abs(numerator) < denominator;
+    }
+
+    public boolean isImproper() {
+        return Math.abs(numerator) >= denominator;
+    }
+
+    public boolean isEquivalent(Fraction other) {
+        return numerator == other.numerator && denominator == other.denominator;
+    }
+
+    public Fraction add(Fraction other) {
+        int newNumerator = (numerator * other.denominator) + (other.numerator * denominator);
+        int newDenominator = denominator * other.denominator;
+        return new Fraction(newNumerator, newDenominator);
+    }
+
+    public Fraction multiply(Fraction other) {
+        int newNumerator = numerator * other.numerator;
+        int newDenominator = denominator * other.denominator;
+        return new Fraction(newNumerator, newDenominator);
+    }
+
+    public Fraction divide(Fraction other) {
+        if (other.numerator == 0) {
+            throw new IllegalArgumentException("Division by zero is not allowed.");
+        }
+        int newNumerator = numerator * other.denominator;
+        int newDenominator = denominator * other.numerator;
+        return new Fraction(newNumerator, newDenominator);
+    }
+
     @Override
     public String toString() {
         return "Fraction{" +
                 "numerator=" + numerator +
                 ", denominator=" + denominator +
                 '}';
+    }
+
+    private int greatestCommonDivisor(int a, int b) {
+        if (b == 0) {
+            return a;
+        } else {
+            return greatestCommonDivisor(b, a % b);
+        }
     }
 }

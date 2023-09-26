@@ -60,5 +60,51 @@ class FractionTest {
         String expected = "Fraction{numerator=2, denominator=4}";
         assertEquals(expected, fraction.toString());
     }
+
+    @Test
+    public void testIsProper() {
+        assertTrue(fraction.isProper());
+
+        Fraction improperFraction = new Fraction(5, 4);
+        assertFalse(improperFraction.isProper());
+    }
+
+    @Test
+    public void testIsImproper() {
+        assertFalse(fraction.isImproper());
+
+        Fraction improperFraction = new Fraction(5, 4);
+        assertTrue(improperFraction.isImproper());
+    }
+
+    @Test
+    public void testIsEquivalent() {
+        Fraction equivalentFraction = new Fraction(1, 2);
+        assertTrue(fraction.isEquivalent(equivalentFraction));
+
+        Fraction nonEquivalentFraction = new Fraction(3, 5);
+        assertFalse(fraction.isEquivalent(nonEquivalentFraction));
+    }
+
+    @Test
+    public void testAdd() {
+        Fraction otherFraction = new Fraction(1, 3);
+        Fraction result = fraction.add(otherFraction);
+        assertEquals(new Fraction(5, 6), result);
+    }
+
+    @Test
+    public void testMultiply() {
+        Fraction otherFraction = new Fraction(3, 5);
+        Fraction result = fraction.multiply(otherFraction);
+        assertEquals(new Fraction(3, 10), result);
+    }
+
+    @Test
+    public void testDivide() {
+        Fraction otherFraction = new Fraction(1, 2);
+        Fraction result = fraction.divide(otherFraction);
+        assertEquals(new Fraction(4, 1), result);
+    }
 }
 
