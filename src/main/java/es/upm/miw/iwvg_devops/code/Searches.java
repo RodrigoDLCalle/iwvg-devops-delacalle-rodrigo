@@ -8,7 +8,6 @@ public class Searches {
 
     private final List<User> users;
 
-
     public Searches(List<User> users) {
         this.users = users;
     }
