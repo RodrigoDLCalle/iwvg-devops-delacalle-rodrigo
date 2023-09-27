@@ -65,6 +65,10 @@ public class Fraction {
         return Math.abs(numerator) >= denominator;
     }
 
+    public boolean isNegative() {
+        return (numerator < 0 && denominator >= 0) || (denominator < 0 && numerator >=0);
+    }
+
     public boolean isEquivalent(Fraction other) {
         return ((double)numerator/denominator) == ((double)other.numerator/other.denominator);
     }
