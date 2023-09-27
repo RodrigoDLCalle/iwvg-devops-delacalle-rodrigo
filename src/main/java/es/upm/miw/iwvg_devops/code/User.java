@@ -1,6 +1,5 @@
 package es.upm.miw.iwvg_devops.code;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -9,9 +8,6 @@ public class User {
     private String familyName;
     private List<Fraction> fractions;
 
-    public User() {
-        this.fractions = new ArrayList<>();
-    }
 
     public User(String id, String name, String familyName, List<Fraction> fractions) {
         this.id = id;
