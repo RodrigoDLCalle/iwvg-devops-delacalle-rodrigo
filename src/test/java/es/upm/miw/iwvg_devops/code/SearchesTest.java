@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SearchesTest {
 
     private List<User> users;
+    private Searches searches;
 
     @BeforeEach
     void setUp() {
@@ -35,19 +37,29 @@ class SearchesTest {
         users.add(user1);
         users.add(user2);
         users.add(user3);
+
+        searches = new Searches(users);
     }
 
     @Test
     void testFindUserIdBySomeProperFraction() {
-        Searches searches = new Searches();
 
-        Stream<String> result = searches.findUserIdBySomeProperFraction(users);
+        Stream<String> result = searches.findUserIdBySomeProperFraction();
 
         List<String> resultList = result.toList();
 
-        // Aserciones
         assertEquals(2, resultList.size());
         assertEquals("1", resultList.get(0));
         assertEquals("2", resultList.get(1));
+    }
+
+    @Test
+     void testFindDecimalImproperFractionByUserName() {
+
+        Stream<Double> result = searches.findDecimalImproperFractionByUserName("Alice");
+        List<Double> resultList = result.toList();
+
+        assertEquals(2, resultList.size());
+        assertEquals(1.66, resultList.get(0), 0.01);
     }
 }
