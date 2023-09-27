@@ -1,6 +1,5 @@
 package es.upm.miw.iwvg_devops.code;
-import es.upm.miw.iwvg_devops.code.Fraction;
-import es.upm.miw.iwvg_devops.code.User;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class UserTest {
+class UserTest {
 
     private User user;
     private List<Fraction> fractions;
@@ -23,39 +22,39 @@ public class UserTest {
     }
 
     @Test
-    public void testGetId() {
+    void testGetId() {
         assertEquals("1", user.getId());
     }
 
     @Test
-    public void testGetName() {
+    void testGetName() {
         assertEquals("John", user.getName());
     }
 
     @Test
-    public void testSetName() {
+    void testSetName() {
         user.setName("Jane");
         assertEquals("Jane", user.getName());
     }
 
     @Test
-    public void testGetFamilyName() {
+    void testGetFamilyName() {
         assertEquals("Doe", user.getFamilyName());
     }
 
     @Test
-    public void testSetFamilyName() {
+    void testSetFamilyName() {
         user.setFamilyName("Smith");
         assertEquals("Smith", user.getFamilyName());
     }
 
     @Test
-    public void testGetFractions() {
+    void testGetFractions() {
         assertEquals(fractions, user.getFractions());
     }
 
     @Test
-    public void testSetFractions() {
+    void testSetFractions() {
         List<Fraction> newFractions = new ArrayList<>();
         newFractions.add(new Fraction(1, 3));
         user.setFractions(newFractions);
@@ -63,24 +62,24 @@ public class UserTest {
     }
 
     @Test
-    public void testAddFraction() {
+    void testAddFraction() {
         Fraction newFraction = new Fraction(2, 5);
         user.addFraction(newFraction);
         assertTrue(user.getFractions().contains(newFraction));
     }
 
     @Test
-    public void testFullName() {
+    void testFullName() {
         assertEquals("John Doe", user.fullName());
     }
 
     @Test
-    public void testInitials() {
+    void testInitials() {
         assertEquals("J.", user.initials());
     }
 
     @Test
-    public void testToString() {
+    void testToString() {
         String expected = "User{id='1', name='John', familyName='Doe', fractions=[Fraction: [1/2], Fraction: [3/4]]}";
         assertEquals(expected, user.toString());
     }
