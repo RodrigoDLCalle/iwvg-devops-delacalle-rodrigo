@@ -5,9 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 class SearchesTest {
 
@@ -70,5 +73,15 @@ class SearchesTest {
 
         // Aserciones
         assertEquals(0, resultList.size());
+    }
+
+    @Test
+    void testFindFractionAdditionByUserId() {
+
+        Optional<Fraction> result = searches.findFractionAdditionByUserId("1");
+
+        assertTrue(result.isPresent());
+        assertEquals(10, result.get().getNumerator());
+        assertEquals(8,result.get().getDenominator());
     }
 }
