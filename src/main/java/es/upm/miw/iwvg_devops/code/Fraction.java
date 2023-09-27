@@ -66,7 +66,7 @@ public class Fraction {
     }
 
     public boolean isEquivalent(Fraction other) {
-        return numerator == other.numerator && denominator == other.denominator;
+        return ((double)numerator/denominator) == ((double)other.numerator/other.denominator);
     }
 
     public Fraction add(Fraction other) {
@@ -92,10 +92,10 @@ public class Fraction {
 
     @Override
     public String toString() {
-        return "Fraction{" +
-                "numerator=" + numerator +
-                ", denominator=" + denominator +
-                '}';
+        return "Fraction: " +
+                "[" + numerator +
+                "/" + denominator +
+                ']';
     }
 
     private int greatestCommonDivisor(int a, int b) {

@@ -57,12 +57,12 @@ class FractionTest {
 
     @Test
     void testToString() {
-        String expected = "Fraction{numerator=2, denominator=4}";
+        String expected = "Fraction: [2/4]";
         assertEquals(expected, fraction.toString());
     }
 
     @Test
-    public void testIsProper() {
+    void testIsProper() {
         assertTrue(fraction.isProper());
 
         Fraction improperFraction = new Fraction(5, 4);
@@ -70,7 +70,7 @@ class FractionTest {
     }
 
     @Test
-    public void testIsImproper() {
+    void testIsImproper() {
         assertFalse(fraction.isImproper());
 
         Fraction improperFraction = new Fraction(5, 4);
@@ -78,7 +78,7 @@ class FractionTest {
     }
 
     @Test
-    public void testIsEquivalent() {
+    void testIsEquivalent() {
         Fraction equivalentFraction = new Fraction(1, 2);
         assertTrue(fraction.isEquivalent(equivalentFraction));
 
@@ -87,24 +87,26 @@ class FractionTest {
     }
 
     @Test
-    public void testAdd() {
+    void testAdd() {
         Fraction otherFraction = new Fraction(1, 3);
         Fraction result = fraction.add(otherFraction);
-        assertEquals(new Fraction(5, 6), result);
+        assertEquals(result.getNumerator() , 10);
+        assertEquals(result.getDenominator() , 12);
     }
 
     @Test
-    public void testMultiply() {
+    void testMultiply() {
         Fraction otherFraction = new Fraction(3, 5);
         Fraction result = fraction.multiply(otherFraction);
-        assertEquals(new Fraction(3, 10), result);
+        assertEquals(result.getNumerator() , 6);
+        assertEquals(result.getDenominator() , 20);
     }
 
     @Test
-    public void testDivide() {
+    void testDivide() {
         Fraction otherFraction = new Fraction(1, 2);
         Fraction result = fraction.divide(otherFraction);
-        assertEquals(new Fraction(4, 1), result);
+        assertEquals(result.getNumerator() , 4);
+        assertEquals(result.getDenominator() , 4);
     }
 }
-
