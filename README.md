@@ -14,5 +14,5 @@
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=RodrigoDLCalle_iwvg-devops-delacalle-rodrigo&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=RodrigoDLCalle_iwvg-devops-delacalle-rodrigo)
 
 Ejemplo resuelto:
-![](./images/tree.png)
-![](./images/coverage.png)
+![](./tree.png)
+![](./coverage.png)
