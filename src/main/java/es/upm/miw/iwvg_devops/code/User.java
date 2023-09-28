@@ -9,10 +9,6 @@ public class User {
     private String familyName;
     private List<Fraction> fractions;
 
-    public User() {
-        this.fractions = new ArrayList<>();
-    }
-
     public User(String id, String name, String familyName, List<Fraction> fractions) {
         this.id = id;
         this.name = name;
