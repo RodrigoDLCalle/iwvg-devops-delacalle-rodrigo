@@ -109,4 +109,17 @@ class FractionTest {
         assertEquals(result.getNumerator() , 4);
         assertEquals(result.getDenominator() , 4);
     }
+
+    @Test
+    void testIsNegative() {
+        Fraction fraction2 = new Fraction(-1, 2);
+        Fraction fraction3 = new Fraction(1, -2);
+        Fraction fraction4 = new Fraction(-1, -2);
+
+        assertFalse(fraction.isNegative());
+        assertTrue(fraction2.isNegative());
+        assertTrue(fraction3.isNegative());
+        assertFalse(fraction4.isNegative());
+
+    }
 }
